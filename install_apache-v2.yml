@@ -1,0 +1,8 @@
+---
+- name: Install the required packages on the web server
+  hosts: digitalocean
+  tasks:
+    - name: Install the httpd packages
+      apt:
+        name: nginx
+        state: absent

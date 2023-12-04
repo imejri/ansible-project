@@ -1,0 +1,11 @@
+---
+- name: evaluate group variable in inventory file
+  hosts: digitalocean
+  tasks:
+    - name: display the type of the test to execute
+      shell:
+        echo "The name of the test to execute is the {{test_type}}" > /root/test.txt
+      register: display_type_test
+
+    - debug:
+        var: display_type_test

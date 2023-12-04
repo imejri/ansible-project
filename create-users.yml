@@ -1,0 +1,7 @@
+---
+- name: create user account in our digitalocean server
+  hosts: digitalocean
+  tasks:
+    - name: creating the user {{user}} from group_vars
+      ansible.builtin.user:
+        name: "{{user}}"

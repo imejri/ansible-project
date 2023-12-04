@@ -1,0 +1,6 @@
+[digitalocean]
+146.190.231.53 
+[digitalocean:vars]
+test_type='unit test'
+[test]
+104.248.253.243

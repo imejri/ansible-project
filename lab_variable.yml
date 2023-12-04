@@ -1,0 +1,68 @@
+---
+- name: install and configure webserver with basic auth
+  hosts: test
+  vars:
+    vars:
+     ansible_python_interpreter: /usr/bin/python3
+    firewall_pkg: firewalld
+    firewall_svc: firewalld
+    web_pkg: httpd
+    web_svc: httpd
+    ssl_pkg: mod_ssl
+    secrets_dir: /etc/httpd/secrets
+    secrets_dest: "{{ secrets_dir }}/htpasswd"
+    web_root: /var/www/html
+  tasks:
+    - name: latest version of necessary packages installed
+      ansible.builtin.dnf:
+        name:
+          - "{{ firewall_pkg }}"
+          - "{{ web_pkg }}"
+          - "{{ ssl_pkg }}"
+        state: latest
+
+    - name: create index.html
+      ansible.builtin.copy:
+        content: "{{ ansible_facts['fqdn'] }} ({{ ansible_facts['default_ipv4']['address'] }}) has been customized by Ansible.\n"
+        dest: "{{ web_root }}/index.html"
+
+    - name: firewall service enable and started
+      ansible.builtin.service:
+        name: "{{ firewall_svc }}"
+        state: started
+        enabled: true
+
+    - name: open the port for the web server
+      ansible.posix.firewalld:
+        service: https
+        state: enabled
+        immediate: true
+        permanent: true
+
+    - name: web service enabled and started
+      ansible.builtin.service:
+        name: "{{ web_svc }}"
+        state: started
+        enabled: true
+
+- name: test web server with basic auth
+  hosts: workstation
+  become: false
+  vars:
+    - web_user: guest
+  vars_files:
+    - vars/secret.yml
+  tasks:
+    - name: connect to web server with basic auth
+      ansible.builtin.uri:
+        url: https://serverb.lab.example.com
+        validate_certs: no
+        force_basic_auth: yes
+        user: "{{ web_user }}"
+        password: "{{ web_pass }}"
+        return_content: yes
+        status_code: 200
+      register: auth_test
+
+    - ansible.builtin.debug:
+        var: auth_test.content

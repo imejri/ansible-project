@@ -1,0 +1,28 @@
+---
+- name: Récupérer le nom d'hôte et afficher /etc/passwd
+  hosts: digitalocean
+  gather_facts: no
+
+  tasks:
+    - name: Obtenir le nom d'hôte de la machine cible
+      ansible.builtin.command:
+        cmd: hostname
+      register: hostname_result
+      when: ansible_host == "146.190.231.53"
+
+    - name: Afficher le nom d'hôte
+      ansible.builtin.debug:
+        msg: "Le nom d'hôte de la machine 146.190.231.53 est {{ hostname_result.stdout }}"
+      when: hostname_result is defined
+
+    - name: Afficher le contenu de /etc/passwd
+      ansible.builtin.command:
+        cmd: cat /etc/passwd
+      register: etc_passwd
+      when: ansible_host == "146.190.231.53"
+
+    - name: Afficher le résultat de /etc/passwd
+      ansible.builtin.debug:
+        msg: "{{ etc_passwd.stdout }}"
+      when: etc_passwd is defined
+
