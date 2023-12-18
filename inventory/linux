@@ -1,5 +1,7 @@
 [digitalocean]
-146.190.231.53 
+146.190.231.53
+[webservers]
+httpd-server ansible_host=167.172.47.231
 [digitalocean:vars]
 test_type='unit test'
 [test]
