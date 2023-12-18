@@ -8,7 +8,8 @@
         name: httpd
         state: present
     - name: install vim editor in centos 9
-        yum: vim
+      yum: 
+        name: vim
         state: present
 
     - name: Démarrer le service Apache et s'assurer qu'il est activé au démarrage
