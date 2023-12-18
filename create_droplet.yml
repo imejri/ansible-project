@@ -1,0 +1,23 @@
+---
+- name: Create DigitalOcean Droplet
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+    - name: Create a new Droplet
+      community.digitalocean.digital_ocean_droplet:
+        state: absent
+        oauth_token: "{{DO_API_TOKEN}}"
+        name: ansible-droplet
+        region: nyc1
+        size: s-1vcpu-1gb
+        image: ubuntu-20-04-x64
+        ssh_keys:
+          - c3:b5:87:f7:c7:67:c5:bf:c7:9e:db:57:d2:aa:0a:75
+      register: my_droplet
+
+    - name: Show Droplet info
+      ansible.builtin.debug:
+         msg: |
+          Droplet ID is {{ my_droplet.data.droplet.id }}
+          First Public IPv4 is {{ (my_droplet.data.droplet.networks.v4 | selectattr('type', 'equalto', 'public')).0.ip_address | default('<none>', true) }}
+          First Private IPv4 is {{ (my_droplet.data.droplet.networks.v4 | selectattr('type', 'equalto', 'private')).0.ip_address | default('<none>', true) }}
