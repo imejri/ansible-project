@@ -1,0 +1,15 @@
+---
+- name: Installer Apache sur un serveur Red Hat/CentOS
+  hosts: webservers
+
+  tasks:
+    - name: Installer Apache (httpd)
+      yum:
+        name: httpd
+        state: present
+
+    - name: Démarrer le service Apache et s'assurer qu'il est activé au démarrage
+      service:
+        name: httpd
+        state: started
+        enabled: yes
