@@ -3,7 +3,7 @@
   hosts: 192.168.64.130
   become: yes
   vars:
-    file_path: /home/alpine/marwa.txt
+    file_path: /home/vagrant/marwa.txt
     file_content: "date de naissance est 27/11/1989"
 
   tasks:
