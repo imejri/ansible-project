@@ -1,7 +1,7 @@
 ---
 - name: ping module demo 
-  hosts: digitalocean
-  become: false
+  hosts: 192.168.64.130
+  become: vagrant
   tasks:
     - name: test connection 
       ansible.builtin.ping:
