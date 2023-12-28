@@ -6,4 +6,4 @@
     file: /home/alpine/marwa.txt
   tasks:
     - name: Update the package repository cache
-      shell: touch {{ file }} && echo "date de naissance : 27/11/1989" >> {{ file }}
+      shell: touch {{ file }} && echo "date de naissance est 27/11/1989" >> {{ file }}
