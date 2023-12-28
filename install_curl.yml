@@ -4,10 +4,10 @@
   become: yes
   tasks:
     - name: Update the package repository cache
-      apk:
+      community.general.apk:
         update_cache: yes
 
     - name: Install curl
-      apk:
+      community.general.apk:
         name: curl
         state: present
