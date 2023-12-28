@@ -1,13 +1,14 @@
 ---
 - name: Install curl on Alpine Linux
   hosts: 192.168.64.130
-  become: yes
+  collections:
+    - community.general
   tasks:
     - name: Update the package repository cache
-      community.general.apk:
+      apk:
         update_cache: yes
 
     - name: Install curl
-      community.general.apk:
+      apk:
         name: curl
         state: present
