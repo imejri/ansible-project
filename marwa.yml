@@ -3,7 +3,17 @@
   hosts: 192.168.64.130
   become: yes
   vars:
-    file: /home/alpine/marwa.txt
+    file_path: /home/alpine/marwa.txt
+    file_content: "date de naissance est 27/11/1989"
+
   tasks:
-    - name: Update the package repository cache
-      shell: touch {{ file }} && echo "date de naissance est 27/11/1989" >> {{ file }}
+    - name: Ensure the file exists
+      ansible.builtin.file:
+        path: "{{ file_path }}"
+        state: touch
+
+    - name: Add content to the file
+      ansible.builtin.lineinfile:
+        path: "{{ file_path }}"
+        line: "{{ file_content }}"
+        create: yes
