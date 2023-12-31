@@ -1,7 +1,7 @@
 ---
 - name: Récupérer le nom d'hôte
-  hosts: digitalocean
-  gather_facts: no
+  hosts: vagrant
+  gather_facts: yes
 
   tasks:
     - name: Obtenir le nom d'hôte de la machine cible
@@ -11,5 +11,5 @@
 
     - name: Afficher le nom d'hôte
       ansible.builtin.debug:
-        msg: "Le nom d'hôte de la machine 146.190.231.53 est {{ hostname_result.stdout }}"
+        msg: "Le nom d'hôte de la machine {{ ansible_facts['default_ipv4']['address'] }} est {{ hostname_result.stdout }}"
       when: hostname_result is defined
