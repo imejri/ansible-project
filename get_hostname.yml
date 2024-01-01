@@ -11,5 +11,5 @@
 
     - name: Afficher le nom d'hôte
       ansible.builtin.debug:
-        msg: "Le nom d'hôte de la machine 146.190.231.53 est {{ hostname_result.stdout }}"
+        msg: "Le nom d'hôte de la machine {{ ansible_facts['default_ipv4']['address'] }} est {{ hostname_result.stdout }}"
       when: hostname_result is defined
