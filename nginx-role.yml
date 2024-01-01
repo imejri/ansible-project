@@ -1,0 +1,8 @@
+---
+
+- name: use nginx role
+  hosts: ubuntu
+  vars:
+    system_owner: mejri.issam@devops.io
+  roles:
+    - nginx-role

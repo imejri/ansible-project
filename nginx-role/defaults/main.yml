@@ -1,0 +1,5 @@
+---
+# defaults file for nginx-role
+
+system_owner: issam@devops.io
+Maintainer: Mejri Issam

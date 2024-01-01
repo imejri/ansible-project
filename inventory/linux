@@ -1,6 +1,16 @@
-[digitalocean]
-146.190.231.53 
-[digitalocean:vars]
-test_type='unit test'
-[test]
-104.248.253.243
+
+[vagrant]
+
+alpine ansible_host=192.168.64.132 ansible_user=vagrant
+ubuntu-server ansible_host=192.168.64.131 ansible_user=vagrant ansible_ssh_timeout=25 ansible_become_pass=vagrant
+
+[ubuntu]
+
+ubuntu-server ansible_host=192.168.64.131 ansible_user=vagrant ansible_ssh_timeout=25 ansible_become_pass=vagrant
+
+[alpines]
+
+alpine ansible_host=192.168.64.132 ansible_user=vagrant
+
+
+

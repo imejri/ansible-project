@@ -1,0 +1,7 @@
+---
+- name: Use of hostvars extra variable
+  hosts: all
+  tasks:
+     - name: Print list of network interfaces for alpine host
+       ansible.builtin.debug:
+         var: groups

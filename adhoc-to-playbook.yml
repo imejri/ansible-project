@@ -1,0 +1,29 @@
+---
+- name: Install and configure Linux Machine
+  hosts: vagrant
+  vars:
+     user: admin
+     tools: curl
+     file_path: /tmp/devops.txt
+     file_content: "Le contenu de ce ficheir est créer par Ansible avec la collection ansible.builtin.lineinfile"
+  tasks:
+  
+    - name: Add devuser "{{ user }}"
+      ansible.builtin.user:
+        name: "{{ user }}"
+        state: present
+        
+    - name: Ensure the file exist
+      ansible.builtin.file:
+         path: "{{ file_path }}"
+         state: touch
+         
+    - name: Add contect to the file
+      ansible.builtin.lineinfile:
+         path: "{{ file_path }}"
+         line: "{{ file_content }}"
+         create: yes
+
+
+
+

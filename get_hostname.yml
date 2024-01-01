@@ -1,6 +1,6 @@
 ---
 - name: Récupérer le nom d'hôte
-  hosts: digitalocean
+  hosts: vagrant
   gather_facts: no
 
   tasks:

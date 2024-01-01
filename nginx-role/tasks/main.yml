@@ -1,0 +1,16 @@
+---
+# tasks file for nginx-role
+
+    - name: Installe Nginx Server
+      ansible.builtin.apt:
+        name: "{{ tools }}"
+        state: latest
+      notify: restart nginx
+    
+    - name: Modifie un fichier de configuration
+      ansible.builtin.lineinfile:
+        path: /etc/nginx/nginx.conf
+        line: "#daemon off;"
+      notify: 
+        - restart nginx
+        - create temporary file

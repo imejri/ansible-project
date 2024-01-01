@@ -1,0 +1,12 @@
+---
+# handlers file for nginx-role
+
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+        
+    - name: create temporary file
+      ansible.builtin.copy:
+        content: "create with handlers"
+        dest: /tmp/handlers-role.txt

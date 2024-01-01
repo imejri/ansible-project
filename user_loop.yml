@@ -1,0 +1,15 @@
+---
+- name: Add users with loop
+  hosts: alpine
+  vars:
+     list_users:
+        - dev1
+        - dev2
+        - dev3
+  tasks:
+    - name: Add devuser
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ list_users }}"
+        

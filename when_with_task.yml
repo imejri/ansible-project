@@ -1,0 +1,29 @@
+---
+- name: Create User With memory condition
+  hosts: vagrant
+  gather_facts: yes
+  vars:
+    add_users:
+      - mem1
+      - mem2
+    dist_version: '6.6.5-0-virt'
+    memory: 600
+
+  tasks:
+  
+    - name: inspect OS version
+      ansible.builtin.shell:
+        cmd: uname -r
+      register: os_version
+    
+    - name: Print OS version variable
+      ansible.builtin.debug:
+        var: os_version.stdout
+      
+    - name: Add user
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ add_users }}"
+      when: ansible_memory_mb.real.free > memory or os_version.stdout == dist_version
+
