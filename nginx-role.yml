@@ -1,7 +1,7 @@
 ---
 
 - name: use nginx role
-  hosts: ubuntu
+  hosts: vagrant
   vars:
     system_owner: mejri.issam@devops.io
   roles:
