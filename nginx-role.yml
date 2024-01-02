@@ -1,7 +1,7 @@
 ---
 
 - name: use nginx role
-  hosts: vagrant
+  hosts: 'vagrant,!alpine.lab.local'
   vars:
     system_owner: mejri.issam@devops.io
   roles:
