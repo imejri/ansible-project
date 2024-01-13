@@ -8,17 +8,3 @@ vagrant:
       ansible_user: vagrant
       ansible_ssh_timeout: 25
       ansible_become_pass: vagrant
-
-ubuntu:
-  hosts:
-    ubuntu-server:
-      ansible_host: 192.168.64.131
-      ansible_user: vagrant
-      ansible_ssh_timeout: 25
-      ansible_become_pass: vagrant
-
-alpines:
-  hosts:
-    alpine:
-      ansible_host: 192.168.64.132
-      ansible_user: vagrant
