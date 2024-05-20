@@ -1,5 +1,5 @@
 ---
-- hosts: centos.lab.local
+- hosts: vagrant
   become: yes
 
   tasks:
