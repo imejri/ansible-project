@@ -1,7 +1,7 @@
 ---
 - hosts: vagrant
   become: yes
-  become_user: vagrant
+  become_user: root
 
   tasks:
     - name: Vérifier que le serveur est joignable
