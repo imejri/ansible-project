@@ -1,0 +1,5 @@
+---
+- name: Install Docker sous Fedora
+  hosts: fedora.lab.local
+  roles:
+    - geerlingguy.docker

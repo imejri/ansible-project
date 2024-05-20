@@ -1,0 +1,100 @@
+---
+- hosts: centos.lab.local
+  become: yes
+
+  tasks:
+    - name: Vérifier que le serveur est joignable
+      ansible.builtin.ping:
+
+    - name: Désinstaller le package podman-docker s'il est présent
+      ansible.builtin.dnf:
+        name: podman-docker
+        state: absent
+
+    - name: Ajouter le dépôt officiel Docker
+      ansible.builtin.yum_repository:
+        name: docker
+        description: Docker Repository
+        baseurl: https://download.docker.com/linux/centos/9/aarch64/stable
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+
+    - name: Mettre à jour la liste des paquets
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        update_cache: yes
+
+    - name: Installer le package docker-ce
+      ansible.builtin.dnf:
+        name: docker-ce
+        state: present
+
+    - name: Installer le package docker-ce-cli
+      ansible.builtin.dnf:
+        name: docker-ce-cli
+        state: present
+
+    - name: Démarrer et activer le service docker
+      ansible.builtin.systemd:
+        name: docker
+        state: started
+        enabled: yes
+        
+    - name: Installer le module Python requests
+      ansible.builtin.dnf:
+        name: python3-requests
+        state: present
+        
+    - name: Pull de l'image de conteneur httpd
+      community.docker.docker_image:
+        name: httpd
+        source: pull
+        
+    - name: Pull de l'image de conteneur httpd
+      community.docker.docker_container:
+        name: web-server
+        image: httpd
+        ports:
+          - "8080:80"
+        state: started
+        
+        
+    - name: Ouvrir le port 8080
+      ansible.posix.firewalld:
+        port: 8080/tcp
+        permanent: yes
+        state: enabled
+      notify:
+        - restart firewalld
+        
+        
+  handlers:
+    - name: restart firewalld
+      ansible.builtin.systemd:
+        name: firewalld
+        state: restarted
+        enabled: yes
+        
+  post_tasks:
+    - name: Tester la connexion au serveur Web
+      ansible.builtin.uri:
+        url: http://centos.lab.local:8080
+        status_code: 200
+      register: webserver_response
+      
+    - debug:
+        msg: "Le serveur web httpd est accessible avec succès!"
+      when: webserver_response.status == 200
+  
+      
+
+        
+        
+        
+        
+        
+        
+        
+
+

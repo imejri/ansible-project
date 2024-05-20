@@ -1,8 +1,9 @@
 ---
 ansible-navigator:
   execution-environment:
-    image: ee-supported-rhel8:latest
+    image: custom-ansible-ee 
     pull:
       policy: missing
   playbook-artifact:
     enable: false
+

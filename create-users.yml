@@ -1,7 +1,9 @@
 ---
-- name: create user account in our digitalocean server
-  hosts: digitalocean
+- name: create user account in ubuntu server
+  hosts: fedora.lab.local
+  vars_files:
+    - secret.yml
   tasks:
-    - name: creating the user {{user}} from group_vars
+    - name: creating the user 
       ansible.builtin.user:
-        name: "{{user}}"
+        name: "{{ user }}"
