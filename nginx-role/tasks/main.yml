@@ -2,7 +2,7 @@
 # tasks file for nginx-role
 
     - name: Installe Nginx Server
-      ansible.builtin.apt:
+      ansible.builtin.package:
         name: "{{ tools }}"
         state: latest
       notify: restart nginx
