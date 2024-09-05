@@ -1,7 +1,15 @@
-- name: Fact dump
+---
+- name: Gather and store facts
   hosts: all
-  gather_facts: no
+  gather_facts: true
   tasks:
-    - name: Print all facts
-      ansible.builtin.debug:
-        var: ansible_facts
+    - name: Copy facts to file
+      ansible.windows.win_copy:
+        content: |
+          OS: "{{ ansible_facts['os_name'] }}"
+          FQDN: "{{ ansible_facts['fqdn'] }}"
+          Domain: "{{ ansible_facts['windows_domain'] }}"
+          Machine ID: "{{ ansible_facts['machine_id'] }}"
+          Last Boot: "{{ ansible_facts['lastboot'] }}"
+          IP Addresses: "{{ ansible_facts['ip_addresses'] }}"
+        dest: "{{ ansible_facts['user_dir'] }}\\Desktop\\summary-{{ ansible_facts['hostname'] }}.txt"
