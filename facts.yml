@@ -1,6 +1,6 @@
 ---
 - name: Gather and store facts
-  hosts: 192.168.196.130
+  hosts: windows
   gather_facts: true
   tasks:
     - name: Copy facts to file
