@@ -1,0 +1,4 @@
+---
+collections:
+  - name: community.docker
+    version: 1.9.1  # Remplacez par la version spécifique que vous souhaitez utiliser
