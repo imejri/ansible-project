@@ -1,0 +1,20 @@
+---
+- name: Récupérer l'ID de l'instance avec la balise spécifiée
+  amazon.aws.ec2_instance_facts:
+    region: "{{ region }}"
+    filters:
+      "tag:Name": "{{ instance_name }}"
+  register: ec2_info
+
+- name: S'assurer qu'une instance avec cette balise existe
+  fail:
+    msg: "Aucune instance trouvée avec la balise {{ instance_name }}"
+  when: ec2_info.instances | length == 0
+
+- name: Supprimer l'instance EC2 avec la balise spécifiée
+  amazon.aws.ec2_instance:
+    instance_ids: "{{ item.id }}"
+    region: "{{ region }}"
+    state: absent
+    wait: true
+  loop: "{{ ec2_info.instances }}"

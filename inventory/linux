@@ -1,13 +1,11 @@
+[vmware]
 
-[vagrant]
-
-centos.lab.local ansible_host=192.168.64.135 ansible_user=vagrant ansible_become_pass=vagrant
-ubuntu-server.lab.local ansible_host=192.168.64.131 ansible_user=vagrant ansible_ssh_timeout=25 ansible_become_pass=vagrant
+intranet.lab.local ansible_host=192.168.196.132 ansible_user=issam ansible_become_pass=portos
 
 
-[alpines]
+jenkins.lab.local ansible_host=192.168.196.131 ansible_user=issam ansible_become_pass=portos
 
-alpine.lab.local ansible_host=192.168.64.132 ansible_user=vagrant
+[windows]
 
-
+win11.lab.local ansible_host=192.168.196.130
 

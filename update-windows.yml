@@ -1,0 +1,5 @@
+- hosts: windows
+  tasks:
+  - name: Run Windows Updates.
+    include_role:
+     name: pawansawalani.ansible_role_windows_update

@@ -1,0 +1,2 @@
+---
+ec2_action: "create"  # Action par défaut (create ou delete)

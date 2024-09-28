@@ -1,0 +1,16 @@
+---
+- name: Supprimer une instance EC2 dans la région de Paris
+  hosts: localhost
+  gather_facts: false
+  vars:
+    region: "eu-west-3"  # Région de Paris
+    tag_name: "non-production"
+
+  tasks:
+    - name: Terminer l'instance EC2
+      amazon.aws.ec2_instance:
+        region: "{{ region }}"
+        state: absent # terminate and delete instance
+        filters:
+           "tag:Name": "{{ tag_name }}"
+        wait: true

@@ -1,6 +1,6 @@
 ---
 - name: Add users with loop
-  hosts: alpine
+  hosts: intranet.lab.local
   vars:
      list_users:
         - dev1
@@ -10,6 +10,6 @@
     - name: Add devuser
       ansible.builtin.user:
         name: "{{ item }}"
-        state: present
-      with_items: "{{ list_users }}"
+        state: absent
+      loop: "{{ list_users }}"
         

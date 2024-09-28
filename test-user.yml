@@ -1,0 +1,22 @@
+---
+- name: Configure important user consistently
+  hosts: vmware
+  tasks:
+    - name: Newbie exists with UID 4000
+      ansible.builtin.user:
+        name: newbie
+        uid: 4000
+        state: present
+        
+    - name: Adem exists with UID 5000
+      ansible.builtin.user:
+        name: adem
+        uid: 5000
+        shell: /bin/sh
+        create_home: yes
+        state: present
+        
+    - name: Iheb exists with UID 1003
+      ansible.builtin.user:
+        name: iheb
+        state: absent

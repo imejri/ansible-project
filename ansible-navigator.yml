@@ -1,7 +1,7 @@
 ---
 ansible-navigator:
   execution-environment:
-    image: custom-ansible-ee 
+    image: docker.io/imejri/custom-ansible-ee 
     pull:
       policy: missing
   playbook-artifact:

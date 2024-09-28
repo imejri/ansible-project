@@ -3,6 +3,6 @@
   hosts: digitalocean
   tasks:
     - name: Install the httpd packages
-      apt:
+      ansible.builtin.apt: // Fully Qualified Collection Name: FQCN
         name: nginx
         state: absent

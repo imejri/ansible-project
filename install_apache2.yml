@@ -1,19 +1,13 @@
 ---
 - name: Installer et démarrer Apache sur un serveur Ubuntu
-  hosts: ubuntu-server
+  hosts: jenkins.lab.local
   tasks:
     - name: Mise à jour de la liste des paquets
       ansible.builtin.apt:
         update_cache: yes
 
-    - name: Installation d'Apache
+    - name: remove Apache
       ansible.builtin.apt:
         name: apache2
-        state: present
-
-    - name: Démarrer le service Apache
-      ansible.builtin.systemd:
-        name: apache2
-        state: started
-        enabled: yes
+        state: absent
 

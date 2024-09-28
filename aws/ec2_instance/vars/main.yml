@@ -1,0 +1,8 @@
+---
+region: "eu-west-3"
+instance_type: "t2.micro"
+image_id: "ami-0cb0b94275d5b4aec"  # AMI Ubuntu 20.04 pour la région de Paris
+security_group: "sg-5363b028"  # À remplacer par votre groupe de sécurité
+subnet_id: "subnet-7b485e00"   # À remplacer par votre sous-réseau
+instance_name: "non-production"
+key_name: "aws-ansible"  # À remplacer par votre clé SSH existante

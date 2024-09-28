@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: false
+  roles:
+    - ec2_instance
+  vars:
+    ec2_action: "delete"  # Utilisez "delete" pour supprimer
+    #key_name: "votre_cle_ssh"  # À remplacer par votre clé SSH existante
+    #security_group: "sg-xxxxxxxx"  # À remplacer
+    #subnet_id: "subnet-xxxxxxxx"  # À remplacer
+    instance_name: "non-production"

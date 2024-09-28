@@ -1,0 +1,6 @@
+# Inclusion des fichiers de création et de suppression
+- include_tasks: create.yml
+  when: ec2_action == "create"
+
+- include_tasks: delete.yml
+  when: ec2_action == "delete"
