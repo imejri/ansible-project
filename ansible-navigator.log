@@ -2368,3 +2368,12 @@
 2024-05-20T13:53:27.222081+00:00 ERROR 'ansible_navigator.main' argument {subcommand} --help: invalid choice: 'collection' (choose from 'builder', 'collections', 'config', 'doc', 'exec', 'images', 'inventory', 'lint', 'replay', 'run', 'settings', 'welcome')
 2024-05-20T13:53:27.222093+00:00 INFO 'ansible_navigator.main' Configuration failed, using default log file location. (/root/ansible-project/ansible-navigator.log) Log level set to debug
 2024-05-20T13:53:27.222107+00:00 INFO 'ansible_navigator.main' Review the hints and log file to see what went wrong.
+2024-09-29T10:41:33.220234+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' Image inspection failed, image assumed to be corrupted or missing
+2024-09-29T10:41:33.221358+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stdout: []
+
+2024-09-29T10:41:33.221395+00:00 WARNING 'ansible_navigator.image_manager.puller._log_message' stderr: Error: ghcr.io/ansible-community/community-ee-base:latest: image not known
+
+2024-09-29T10:41:40.212414+00:00 ERROR 'ansible_navigator.actions.collections._run_runner' [33mWARN[0m[0000] image platform (linux/amd64) does not match the expected platform (linux/arm64) 
+[1;31m{"msg":"exec container process `/opt/builder/bin/entrypoint`: Exec format error","level":"error","time":"2024-09-29T10:41:39.273450Z"}[0m
+
+2024-09-29T10:41:49.916001+00:00 ERROR 'ansible_navigator.actions.collections._parse' Unable to extract collection json from stdout

@@ -1,9 +1,9 @@
 ---
 ansible-navigator:
   execution-environment:
-    image: docker.io/imejri/custom-ansible-ee 
+    image: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8
     pull:
-      policy: missing
+      policy: always
   playbook-artifact:
     enable: false
 

@@ -1,0 +1,13 @@
+---
+- name: Create user accounts for all our servers
+  hosts: intranet.lab.local
+  become: true
+  vars_files:
+    - secret.yml
+
+  tasks:
+    - name: Creating user from secret.yml
+      ansible.builtin.user:
+        name: "{{ user }}"
+        password: "{{ pwd }}"
+
